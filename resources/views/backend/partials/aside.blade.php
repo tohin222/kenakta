@@ -26,14 +26,14 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>
-            <span>Header</span>
+            <span>PRODUCTS</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-          <li><a href="{{route('header.create')}}"><i class="fa fa-circle-o"></i> Header Add</a></li>
-            <li><a href="{{route('header.index')}}"><i class="fa fa-circle-o"></i> Header List</a></li>
+          <li><a href="{{route('product.create')}}"><i class="fa fa-circle-o"></i>Product Add</a></li>
+            <li><a href="{{route('product.index')}}"><i class="fa fa-circle-o"></i>Product Show</a></li>
           </ul>
         </li>
 
