@@ -57,7 +57,7 @@ class productController extends Controller
             Product::find($product_id)->update([
               'image'=> $path
             ]);
-            return redirect()->route('backend.product.create')
+            return redirect()->route('product.create')
                  ->with('success','Create updated successfully');
           }
           else{
@@ -70,7 +70,7 @@ class productController extends Controller
                         'status'=>$request->status,
                         'created_at'=>Carbon::now(),
             ]);
-            return redirect()->route('backend.product.create')
+            return redirect()->route('product.create')
                  ->with('success','Create updated successfully');
             }
     }

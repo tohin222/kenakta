@@ -74,7 +74,7 @@
                     <div class="form-group">
 						<h5>Status:<span class="text-danger"></span></h5>
 						<div class="controls">
-							<textarea name="textarea" id="textarea" class="form-control" required placeholder="Textarea text" name="status"></textarea>
+							<textarea  id="textarea" class="form-control" required placeholder="Textarea text" name="status"></textarea>
 						</div>
 					</div>
             @error('status')
