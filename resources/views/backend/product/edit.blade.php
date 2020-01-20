@@ -1,9 +1,9 @@
 @extends('backend.layouts.master')
 @section('contains')
-  <!-- Content Header (Page header) -->
+   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Basic mSells
+      Product Dashboard
     </h1>
   </section>
 
@@ -16,41 +16,81 @@
       <!-- /.box-header -->
       <div class="box-body">
         <div class="row">
-          <div class="col-md-6 col-12">
+          <div class="col-md-12 col-12">
             @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
           @endif
-            <form action="{{route('header.update',$header->id)}}" method="post" enctype="multipart/form-data">
-              @csrf
-                @method('PUT')
+            <form action="{{route('product.update',$editproduct->id)}}" method="post" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+                    <label for="inputEmail4">Title:</label>
+                     <input type="hidden" name="id" value="{{$editproduct->id}}">
                   <div class="form-group">
-                    <label for="inputEmail4">Facebook</label>
-                  <input type="hidden" class="form-control" name="id" value="{{$header->id}}">
-                    <input type="text" class="form-control" name="facebook" value="{{$header->facebook}}">
+                    <input type="text" class="form-control" name="title" placeholder="Title Text" value="{{$editproduct->title}}">
                   </div>
+                    @error('title')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+          @enderror
                   <div class="form-group">
-                    <label for="inputEmail4">Linkdin</label>
-                    <input type="text" class="form-control" name="linkdin" value="{{$header->linkdin}}">
+						<h5>Description:<span class="text-danger"></span></h5>
+						<div class="controls">
+							<textarea id="textarea" class="form-control" required placeholder="Textarea text" name="textarea" value="{{$editproduct->textarea}}"></textarea>
+						</div>
+					</div>
+                @error('textarea')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+          @enderror
+            <div class="form-group">
+                    <label for="inputEmail4">Quantity:</label>
+                    <input type="number" class="form-control" name="quantity" value="{{$editproduct->quantity}}">
                   </div>
+                        @error('Quantity')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+          @enderror
+                    <div class="form-group">
+                    <label for="inputEmail4">Price:</label>
+                    <input type="number" class="form-control" name="price" value="{{$editproduct->price}}">
+                  </div>
+                       @error('price')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+          @enderror
+                   <div class="form-group">
+                    <label for="inputEmail4">Offer Price:</label>
+                    <input type="number" class="form-control" name="offer_price" value="{{$editproduct->offer_price}}">
+                  </div>
+                  @error('offer_price')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+          @enderror
+                    <div class="form-group">
+						<h5>Status:<span class="text-danger"></span></h5>
+						<div class="controls">
+							<textarea  id="textarea" class="form-control" required placeholder="Textarea text" name="status" value="{{$editproduct->status}}"></textarea>
+						</div>
+					</div>
+            @error('status')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+          @enderror
+
                   <div class="form-group">
-                    <label for="inputEmail4">Twitter</label>
-                    <input type="text" class="form-control" name="twitter" value="{{$header->twitter}}">
+                    <label for="inputEmail4">Image:</label>
+                    <input type="file" class="form-control" name="image" value="{{$editproduct->image}}">
                   </div>
-                  <div class="form-group">
-                    <label for="inputEmail4">Pinterest</label>
-                    <input type="text" class="form-control" name="pinterest" value="{{$header->pinterest}}">
-                  </div>
-                  <div class="form-group">
-                    <label for="inputEmail4">Google+</label>
-                    <input type="text" class="form-control" name="google" value="{{$header->google}}">
-                  </div>
-                  <div class="form-group">
-                    <label for="inputEmail4">Mobile Number</label>
-                    <input type="text" class="form-control" name="number" value="{{$header->number}}">
-                  </div>
-                <button type="submit" class="btn btn-primary">Add</button>
+                  
+                <button type="submit" class="btn btn-primary" style="width: 100% !important";>SUBMIT</button>
               </form>
           </div>
         </div>
