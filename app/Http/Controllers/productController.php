@@ -14,7 +14,8 @@ class productController extends Controller
      */
     public function index()
     {
-        return view('backend.product.index');
+        $myproduct = Product::all();
+        return view('backend.product.index',compact('myproduct')); 
     }
 
     /**
@@ -94,7 +95,9 @@ class productController extends Controller
      */
     public function edit($id)
     {
-        //
+                $editproduct = Product::findOrFail($id);
+      return view('backend.product.edit',compact('editproduct'));
+
     }
 
     /**
@@ -106,7 +109,36 @@ class productController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $id = $request->id;
+        if($request->hasFile('image')){
+        Product::where('id',$id)->update([
+                        'title'=>$request->title,
+                        'textarea'=>$request->textarea,
+                        'quantity'=>$request->quantity,
+                        'price' =>$request->price,
+                        'offer_price'=>$request->offer_price,
+                        'status'=>$request->status,
+                        'created_at' => Carbon::now(),
+          ]);
+          $path = $request->file('image')->store('imagestore');
+          Product::find($id)->update([
+            'image'=> $path
+          ]);
+          return redirect()->route('product.index')->with('success',' Update Succesfully');
+        }
+        else{
+            Product::where('id',$id)->update([
+                        'title'=>$request->title,
+                        'textarea'=>$request->textarea,
+                        'quantity'=>$request->quantity,
+                        'price' =>$request->price,
+                        'offer_price'=>$request->offer_price,
+                        'status'=>$request->status,
+                        'created_at' => Carbon::now(),
+          ]);
+         return redirect()->route('product.index')->with('success','Update Succesfully');
+        } 
+
     }
 
     /**
@@ -117,6 +149,8 @@ class productController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Product::where('id',$id)->delete();
+        return back()->with('success','Product Delete Succesfully');
+
     }
 }
